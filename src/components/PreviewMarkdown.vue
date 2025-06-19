@@ -5,7 +5,7 @@ import ExportButtons from './ExportButtons.vue'
 
 const form = useFormStore()
 
-// Computed toujours string, même si les props du store sont vides ou undefined
+// Construire toujours une string valide, même si certaines données sont absentes
 const markdown = computed(() => {
   return `
 ### **Conditions générales de participation**
@@ -113,7 +113,11 @@ En cas de litige, seule la version des modalités affichée sur le site officiel
 const exportRef = ref(null)
 
 function onExportPdf() {
-  exportRef.value?.generatePdf()
+  if (!exportRef.value) {
+    console.warn('ExportButtons component not ready')
+    return
+  }
+  exportRef.value.generatePdf()
 }
 </script>
 
@@ -122,12 +126,13 @@ function onExportPdf() {
     <h2>Aperçu Markdown</h2>
     <pre>{{ markdown }}</pre>
 
-    <!-- Composant export invisible -->
+    <!-- ExportButtons ne rend rien dans le DOM -->
     <ExportButtons
       ref="exportRef"
-      :markdown="markdown || ''"   
+      :markdown="markdown"
       :filename="form.opName || 'document'"
     />
+
     <button @click="onExportPdf">📄 Générer le PDF</button>
   </section>
 </template>

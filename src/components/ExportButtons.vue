@@ -1,8 +1,20 @@
 <script setup>
 import { ref, watch } from 'vue'
-import html2pdf from 'html2pdf.js'
 import markdownIt from 'markdown-it'
-import { nextTick } from 'vue'
+import htmlToPdfmake from 'html-to-pdfmake'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+
+pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs
+// Définit Roboto comme police par défaut
+pdfMake.fonts = {
+  Roboto: {
+    normal: 'Roboto-Regular.ttf',
+    bold: 'Roboto-Medium.ttf',
+    italics: 'Roboto-Italic.ttf',
+    bolditalics: 'Roboto-MediumItalic.ttf',
+  }
+}
 
 const props = defineProps({
   markdown: {
@@ -17,44 +29,34 @@ const props = defineProps({
 
 const compiledHtml = ref('')
 const md = markdownIt()
-const previewRef = ref(null)
 
-// Watch sur markdown : recalcul HTML quand markdown change
-watch(
-  () => props.markdown,
-  (newVal) => {
-    if (typeof newVal === 'string') {
-      compiledHtml.value = md.render(newVal)
-    } else {
-      console.warn('[ExportButtons] markdown is not a string:', newVal)
-      compiledHtml.value = ''
-    }
-  },
-  { immediate: true }
-)
+watch(() => props.markdown, (newVal) => {
+  compiledHtml.value = md.render(newVal || '')
+}, { immediate: true })
 
-async function generatePdf() {
-  if (!previewRef.value) {
-    console.warn('[ExportButtons] previewRef is null')
+function generatePdf() {
+  if (!compiledHtml.value) {
+    console.warn('[ExportButtons] Pas de contenu HTML à convertir')
     return
   }
+  // Convertit le HTML en contenu compatible pdfMake
+  const pdfContent = htmlToPdfmake(compiledHtml.value)
 
-  await nextTick()  // Attendre que DOM soit à jour
+  const docDefinition = {
+    content: pdfContent,
+    defaultStyle: {
+      fontSize: 12,
+      font: 'Roboto',
+    },
+    pageMargins: [40, 60, 40, 60], // marges gauche, haut, droite, bas
+  }
 
-  html2pdf()
-    .set({
-      margin: 10,
-      filename: `${props.filename}.pdf`,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    })
-    .from(previewRef.value)
-    .save()
+  pdfMake.createPdf(docDefinition).download(`${props.filename}.pdf`)
 }
 
 defineExpose({ generatePdf })
 </script>
 
 <template>
-<div ref="previewRef" v-html="compiledHtml" style="background: white; color: black; padding: 10px; border: 1px solid #ccc;"></div>
+  <!-- Pas besoin d'afficher quoi que ce soit ici -->
 </template>
