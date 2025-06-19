@@ -1,32 +1,48 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
 import Formulaire from './components/Formulaire.vue'
+import PreviewMarkdown from './components/PreviewMarkdown.vue'
+
+const showPreview = ref(false)
+
+function toggleView() {
+  showPreview.value = !showPreview.value
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="container">
+    <h1>OpéDF – Générateur d'opérations PDF</h1>
+
+    <button @click="toggleView">
+      {{ showPreview ? '← Retour au formulaire' : '→ Aperçu Markdown' }}
+    </button>
+
+    <hr />
+
+    <Formulaire v-if="!showPreview" />
+    <PreviewMarkdown v-else />
   </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <Formulaire />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+button:hover {
+  background-color: #0056b3;
 }
 </style>
