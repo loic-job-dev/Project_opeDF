@@ -44,10 +44,6 @@ button {
 button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 .card {
   padding: 2em;
@@ -99,6 +95,29 @@ input, textarea {
 .date-range input[type="date"] {
   width: auto;
   margin-right: 0.5rem;
+}
+
+
+/*Style du PreviewMarkdown*/
+.preview-markdown {
+  max-width: 100%;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 1rem;
+  white-space: pre-wrap;
+  font-family: monospace;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+}
+
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 
