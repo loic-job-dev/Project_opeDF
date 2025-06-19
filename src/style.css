@@ -30,11 +30,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -64,6 +59,48 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
+
+/* Style du formulaire : */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+h1, h2 {
+  color: #4790da;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.date-range input[type="date"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

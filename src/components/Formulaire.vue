@@ -4,156 +4,187 @@ const form = useFormStore()
 </script>
 
 <template>
-  <h1>OpéDF, l'outil de génération de PDF destiné aux opés</h1>
+  <div class="container">
 
-  <section>
-    <h2>Informations générales sur l’opération</h2>
+    <section class="section">
+      <h2>Informations générales sur l’opération</h2>
 
-    <label>Nom de l’opération :</label>
-    <input v-model="form.opName" />
-    <p>{{ form.opName }}</p>
+      <div class="form-group">
+        <label for="opName">Nom de l’opération :</label>
+        <input id="opName" v-model="form.opName" />
+      </div>
 
-    <label>Nom de l’entreprise organisatrice :</label>
-    <input v-model="form.societyOrganisation" />
-    <p>{{ form.societyOrganisation }}</p>
+      <div class="form-group">
+        <label for="societyOrganisation">Nom de l’entreprise organisatrice :</label>
+        <input id="societyOrganisation" v-model="form.societyOrganisation" />
+      </div>
 
-    <label>Type juridique de l’entreprise :</label>
-    <input v-model="form.judiciaryType" />
-    <p>{{ form.judiciaryType }}</p>
+      <div class="form-group">
+        <label for="judiciaryType">Type juridique de l’entreprise :</label>
+        <input id="judiciaryType" v-model="form.judiciaryType" />
+      </div>
 
-    <label>Adresse postale du siège social :</label>
-    <input v-model="form.societyAddress" />
-    <p>{{ form.societyAddress }}</p>
+      <div class="form-group">
+        <label for="societyAddress">Adresse postale du siège social :</label>
+        <input id="societyAddress" v-model="form.societyAddress" />
+      </div>
 
-    <label>Numéro RCS / SIRET :</label>
-    <input v-model="form.rcsNumber" />
-    <p>{{ form.rcsNumber }}</p>
+      <div class="form-group">
+        <label for="rcsNumber">Numéro RCS / SIRET :</label>
+        <input id="rcsNumber" v-model="form.rcsNumber" />
+      </div>
 
-    <label>Capital social :</label>
-    <input v-model="form.capital" />
-    <p>{{ form.capital }}</p>
+      <div class="form-group">
+        <label for="capital">Capital social :</label>
+        <input id="capital" v-model="form.capital" />
+      </div>
 
-    <label>URL du site de l’opération :</label>
-    <input v-model="form.websiteUrl" />
-    <p>{{ form.websiteUrl }}</p>
+      <div class="form-group">
+        <label for="websiteUrl">URL du site de l’opération :</label>
+        <input id="websiteUrl" v-model="form.websiteUrl" />
+      </div>
 
-    <label>Période de validité :</label>
-    <div>
-      <input type="date" v-model="form.startDate" /> au
-      <input type="date" v-model="form.endDate" />
-    </div>
-    <p>{{ form.startDate }} – {{ form.endDate }}</p>
+      <div class="form-group date-range">
+        <label>Période de validité :</label>
+        <input type="date" v-model="form.startDate" /> au
+        <input type="date" v-model="form.endDate" />
+      </div>
 
-    <label>Zone géographique concernée :</label>
-    <input v-model="form.geographicZone" />
-    <p>{{ form.geographicZone }}</p>
-  </section>
+      <div class="form-group">
+        <label for="geographicZone">Zone géographique concernée :</label>
+        <input id="geographicZone" v-model="form.geographicZone" />
+      </div>
+    </section>
 
-  <section>
-    <h2>Conditions de participation</h2>
+    <section class="section">
+      <h2>Conditions de participation</h2>
 
-    <label>Public ciblé :</label>
-    <input v-model="form.targetAudience" />
-    <p>{{ form.targetAudience }}</p>
+      <div class="form-group">
+        <label for="targetAudience">Public ciblé :</label>
+        <input id="targetAudience" v-model="form.targetAudience" />
+      </div>
 
-    <label>Nombre maximal de participations :</label>
-    <input v-model="form.participationLimit" />
-    <p>{{ form.participationLimit }}</p>
+      <div class="form-group">
+        <label for="participationLimit">Nombre maximal de participations :</label>
+        <input id="participationLimit" v-model="form.participationLimit" />
+      </div>
 
-    <label>Restrictions spécifiques :</label>
-    <textarea v-model="form.restrictions" rows="5" />
-    <p>{{ form.restrictions }}</p>
+      <div class="form-group">
+        <label for="restrictions">Restrictions spécifiques :</label>
+        <textarea id="restrictions" v-model="form.restrictions" rows="5"></textarea>
+      </div>
 
-    <label>Produits concernés :</label>
-    <input v-model="form.concernedProducts" />
-    <p>{{ form.concernedProducts }}</p>
+      <div class="form-group">
+        <label for="concernedProducts">Produits concernés :</label>
+        <input id="concernedProducts" v-model="form.concernedProducts" />
+      </div>
 
-    <label>Mode d’achat :</label>
-    <input v-model="form.purchaseMode" />
-    <p>{{ form.purchaseMode }}</p>
-  </section>
+      <div class="form-group">
+        <label for="purchaseMode">Mode d’achat :</label>
+        <input id="purchaseMode" v-model="form.purchaseMode" />
+      </div>
+    </section>
 
-  <section>
-    <h2>Justificatifs requis</h2>
+    <section class="section">
+      <h2>Justificatifs requis</h2>
 
-    <label>Type de preuve d’achat :</label>
-    <input v-model="form.proofType" />
-    <p>{{ form.proofType }}</p>
+      <div class="form-group">
+        <label for="proofType">Type de preuve d’achat :</label>
+        <input id="proofType" v-model="form.proofType" />
+      </div>
 
-    <label>Nombre de justificatifs demandés :</label>
-    <input v-model="form.numberOfProofs" />
-    <p>{{ form.numberOfProofs }}</p>
+      <div class="form-group">
+        <label for="numberOfProofs">Nombre de justificatifs demandés :</label>
+        <input id="numberOfProofs" v-model="form.numberOfProofs" />
+      </div>
 
-    <label>Informations à entourer :</label>
-    <textarea v-model="form.proofDetails" rows="3" />
-    <p>{{ form.proofDetails }}</p>
+      <div class="form-group">
+        <label for="proofDetails">Informations à entourer :</label>
+        <textarea id="proofDetails" v-model="form.proofDetails" rows="3"></textarea>
+      </div>
 
-    <label>Mode de soumission :</label>
-    <input v-model="form.submissionMethod" />
-    <p>{{ form.submissionMethod }}</p>
-  </section>
+      <div class="form-group">
+        <label for="submissionMethod">Mode de soumission :</label>
+        <input id="submissionMethod" v-model="form.submissionMethod" />
+      </div>
+    </section>
 
-  <section>
-    <h2>Remboursement / récompense</h2>
+    <section class="section">
+      <h2>Remboursement / récompense</h2>
 
-    <label>Type de remboursement :</label>
-    <input v-model="form.refundType" />
-    <p>{{ form.refundType }}</p>
+      <div class="form-group">
+        <label for="refundType">Type de remboursement :</label>
+        <input id="refundType" v-model="form.refundType" />
+      </div>
 
-    <label>Conditions de calcul :</label>
-    <textarea v-model="form.refundConditions" rows="3" />
-    <p>{{ form.refundConditions }}</p>
+      <div class="form-group">
+        <label for="refundConditions">Conditions de calcul :</label>
+        <textarea id="refundConditions" v-model="form.refundConditions" rows="3"></textarea>
+      </div>
 
-    <label>Délai estimé :</label>
-    <input v-model="form.refundDelay" />
-    <p>{{ form.refundDelay }}</p>
+      <div class="form-group">
+        <label for="refundDelay">Délai estimé :</label>
+        <input id="refundDelay" v-model="form.refundDelay" />
+      </div>
 
-    <label>Limites de remboursement :</label>
-    <textarea v-model="form.refundLimits" rows="2" />
-    <p>{{ form.refundLimits }}</p>
-  </section>
+      <div class="form-group">
+        <label for="refundLimits">Limites de remboursement :</label>
+        <textarea id="refundLimits" v-model="form.refundLimits" rows="2"></textarea>
+      </div>
+    </section>
 
-  <section>
-    <h2>Contact et service client</h2>
+    <section class="section">
+      <h2>Contact et service client</h2>
 
-    <label>Adresse postale :</label>
-    <input v-model="form.contactAddress" />
-    <p>{{ form.contactAddress }}</p>
+      <div class="form-group">
+        <label for="contactAddress">Adresse postale :</label>
+        <input id="contactAddress" v-model="form.contactAddress" />
+      </div>
 
-    <label>Email de contact :</label>
-    <input type="email" v-model="form.contactEmail" />
-    <p>{{ form.contactEmail }}</p>
+      <div class="form-group">
+        <label for="contactEmail">Email de contact :</label>
+        <input id="contactEmail" type="email" v-model="form.contactEmail" />
+      </div>
 
-    <label>Téléphone :</label>
-    <input v-model="form.contactPhone" />
-    <p>{{ form.contactPhone }}</p>
+      <div class="form-group">
+        <label for="contactPhone">Téléphone :</label>
+        <input id="contactPhone" v-model="form.contactPhone" />
+      </div>
 
-    <label>Formulaire de contact (URL) :</label>
-    <input v-model="form.contactFormUrl" />
-    <p>{{ form.contactFormUrl }}</p>
-  </section>
+      <div class="form-group">
+        <label for="contactFormUrl">Formulaire de contact (URL) :</label>
+        <input id="contactFormUrl" v-model="form.contactFormUrl" />
+      </div>
+    </section>
 
-  <section>
-    <h2>Données personnelles / RGPD</h2>
+    <section class="section">
+      <h2>Données personnelles / RGPD</h2>
 
-    <label>Email du DPO / RGPD :</label>
-    <input type="email" v-model="form.dpoEmail" />
-    <p>{{ form.dpoEmail }}</p>
+      <div class="form-group">
+        <label for="dpoEmail">Email du DPO / RGPD :</label>
+        <input id="dpoEmail" type="email" v-model="form.dpoEmail" />
+      </div>
 
-    <label>URL vers la politique de confidentialité :</label>
-    <input v-model="form.privacyPolicyUrl" />
-    <p>{{ form.privacyPolicyUrl }}</p>
+      <div class="form-group">
+        <label for="privacyPolicyUrl">URL vers la politique de confidentialité :</label>
+        <input id="privacyPolicyUrl" v-model="form.privacyPolicyUrl" />
+      </div>
 
-    <label>Finalité du traitement :</label>
-    <textarea v-model="form.dataPurpose" rows="2" />
-    <p>{{ form.dataPurpose }}</p>
+      <div class="form-group">
+        <label for="dataPurpose">Finalité du traitement :</label>
+        <textarea id="dataPurpose" v-model="form.dataPurpose" rows="2"></textarea>
+      </div>
 
-    <label>Durée de conservation des données :</label>
-    <input v-model="form.dataRetention" />
-    <p>{{ form.dataRetention }}</p>
+      <div class="form-group">
+        <label for="dataRetention">Durée de conservation des données :</label>
+        <input id="dataRetention" v-model="form.dataRetention" />
+      </div>
 
-    <label>Consentement marketing / newsletter :</label>
-    <textarea v-model="form.marketingConsent" rows="2" />
-    <p>{{ form.marketingConsent }}</p>
-  </section>
+      <div class="form-group">
+        <label for="marketingConsent">Consentement marketing / newsletter :</label>
+        <textarea id="marketingConsent" v-model="form.marketingConsent" rows="2"></textarea>
+      </div>
+    </section>
+  </div>
 </template>
+
