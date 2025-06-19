@@ -22,5 +22,10 @@ function toggleView() {
 
     <Formulaire v-if="!showPreview" />
     <PreviewMarkdown v-else />
+
+    <button @click="toggleView">
+      {{ showPreview ? '← Retour au formulaire' : '→ Aperçu Markdown' }}
+    </button>
+
   </div>
 </template>

@@ -62,6 +62,7 @@ button:hover {
   margin: 0 auto;
   padding: 1rem;
   font-family: Arial, sans-serif;
+  text-align: left;
 }
 
 .section {
