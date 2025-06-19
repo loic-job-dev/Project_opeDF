@@ -6,7 +6,7 @@ import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs
-// Définit Roboto comme police par défaut
+// Définit Roboto comme police par défaut, une modification peut créer des erreurs selon la police
 pdfMake.fonts = {
   Roboto: {
     normal: 'Roboto-Regular.ttf',
