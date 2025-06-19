@@ -112,11 +112,12 @@ En cas de litige, seule la version des modalités affichée sur le site officiel
 
 const exportRef = ref(null)
 
-function onExportPdf() {
+function exportPdf() {
   if (!exportRef.value) {
     console.warn('ExportButtons component not ready')
     return
   }
+  //function generatePdf() declared in ExportButtons.vue
   exportRef.value.generatePdf()
 }
 </script>
@@ -133,6 +134,6 @@ function onExportPdf() {
       :filename="form.opName || 'document'"
     />
 
-    <button @click="onExportPdf">📄 Générer le PDF</button>
+    <button @click="exportPdf">📄 Générer le PDF</button>
   </section>
 </template>
