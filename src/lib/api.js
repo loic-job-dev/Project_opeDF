@@ -19,5 +19,18 @@ export async function getCompanyBySiret(siret) {
   return data.etablissement
 }
 
+//Consommation de l'API venant de Houston 
+export async function getOperationElements() {
+  const res = await fetch('https://api-gabarit.promo.dev/api/v2/formdata/680a536657000c7ade07bc64')
+
+  if (!res.ok) {
+    console.error('Erreur API Gabarit :', res.status)
+    throw new Error(`Erreur API Gabarit - ${res.status}`)
+  }
+
+  const data = await res.json()
+  return data
+}
+
 
 //Requête qui fonctionne en console : curl --location 'https://api.insee.fr/api-sirene/3.11/siret/32929709700035' --header 'X-INSEE-Api-Key-Integration: token'
