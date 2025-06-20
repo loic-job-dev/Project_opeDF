@@ -12,6 +12,7 @@ export const useFormStore = defineStore('form', () => {
   const websiteUrl = ref('https://www.exemple-offre.fr')
   const startDate = ref('2025-06-01') // format ISO pour input date
   const endDate = ref('2025-07-31')
+  const participationEndDate = ref ('15 jours après l\'achat')
   const geographicZone = ref('France métropolitaine')
 
   // Conditions de participation
@@ -56,6 +57,7 @@ export const useFormStore = defineStore('form', () => {
     websiteUrl,
     startDate,
     endDate,
+    participationEndDate,
     geographicZone,
 
     targetAudience,
