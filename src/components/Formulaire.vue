@@ -1,6 +1,13 @@
 <script setup>
-import { useFormStore } from '../stores/formStore'
+import { useFormStore } from '@/stores/formStore'
+
 const form = useFormStore()
+
+function onSiretInput(event) {
+  // Supprime tous les caractères non numériques, y compris les espaces
+  const cleaned = event.target.value.replace(/\D/g, '')
+  form.siretNumber = cleaned
+}
 </script>
 
 <template>
@@ -12,6 +19,11 @@ const form = useFormStore()
       <div class="form-group">
         <label for="opName">Nom de l’opération :</label>
         <input id="opName" v-model="form.opName" />
+      </div>
+
+      <div class="form-group">
+        <label for="siretNumber">Numéro Siret (gère l'autocomplétion) :</label>
+        <input id="siretNumber" v-model="form.siretNumber" @input="onSiretInput" inputmode="numeric" />
       </div>
 
       <div class="form-group">
@@ -30,7 +42,7 @@ const form = useFormStore()
       </div>
 
       <div class="form-group">
-        <label for="rcsNumber">Numéro RCS / SIRET :</label>
+        <label for="rcsNumber">Numéro RCS :</label>
         <input id="rcsNumber" v-model="form.rcsNumber" />
       </div>
 
@@ -192,4 +204,3 @@ const form = useFormStore()
     </section>
   </div>
 </template>
-

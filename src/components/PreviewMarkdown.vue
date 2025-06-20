@@ -8,6 +8,8 @@ const form = useFormStore()
 // Construire toujours une string valide, même si certaines données sont absentes
 const markdown = computed(() => {
   return `
+# Opération **« ${form.opName || ''} »**
+
 ### **Conditions générales de participation**
 
 La présente opération **« ${form.opName || ''} »**, organisée par **${form.societyOrganisation || ''}**, une société de type **${form.judiciaryType || ''}** dont le siège social est situé à **${form.societyAddress || ''}**, est ouverte à toute personne physique majeure résidant en France métropolitaine.

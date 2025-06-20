@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Formulaire from './components/Formulaire.vue'
 import PreviewMarkdown from './components/PreviewMarkdown.vue'
+import Autocomplete from './components/Autocomplete.vue'
 
 const showPreview = ref(false)
 
@@ -20,8 +21,11 @@ function toggleView() {
 
     <hr />
 
-    <Formulaire v-if="!showPreview" />
-    <PreviewMarkdown v-else />
+ <Formulaire v-if="!showPreview" />
+<Autocomplete v-if="!showPreview" />
+<PreviewMarkdown v-else />
+
+
 
     <button @click="toggleView">
       {{ showPreview ? '← Retour au formulaire' : '→ Aperçu Markdown' }}

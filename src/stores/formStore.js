@@ -8,6 +8,7 @@ export const useFormStore = defineStore('form', () => {
   const judiciaryType = ref('SAS')
   const societyAddress = ref('22 avenue Lionel Terray, 69330 Jonage')
   const rcsNumber = ref('RCS 418 915 138')
+  const siretNumber = ref ('A remplir pour autocomplétion')
   const capital = ref('296 000 €')
   const websiteUrl = ref('https://www.exemple-offre.fr')
   const startDate = ref('2025-06-01') // format ISO pour input date
@@ -53,6 +54,7 @@ export const useFormStore = defineStore('form', () => {
     judiciaryType,
     societyAddress,
     rcsNumber,
+    siretNumber,
     capital,
     websiteUrl,
     startDate,
