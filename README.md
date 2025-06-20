@@ -9,7 +9,7 @@ La finalité est la génération rapide d'un PDF, en renseigant uniquement les i
 
 Dans un premier temps, le retour peut être fait en markdown.
 
-A utiliser : GitHib Pages, Vue3 et Vite, pinia, html2pdf.js, markdown-it, html-to-pdfmake, pdfmake, vue3-simple-typeahead
+A utiliser : GitHib Pages, Vue3 et Vite, pinia, html2pdf.js, markdown-it, html-to-pdfmake, pdfmake
 
 La solution est pensée pour être facilement modifiée en fonction des besoins du contenu du PDF (si jamais ces derniers évoluent dans le temps)
 

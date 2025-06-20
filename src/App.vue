@@ -21,9 +21,9 @@ function toggleView() {
 
     <hr />
 
- <Formulaire v-if="!showPreview" />
-<Autocomplete v-if="!showPreview" />
-<PreviewMarkdown v-else />
+    <Formulaire v-if="!showPreview" />
+    <Autocomplete v-if="!showPreview" />
+    <PreviewMarkdown v-else />
 
 
 

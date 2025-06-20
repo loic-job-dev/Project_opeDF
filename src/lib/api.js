@@ -1,7 +1,8 @@
+//token personnel Siren stocké en variable d'environnement
 const token = import.meta.env.VITE_SIRENE_API_TOKEN
 
 
-
+//Consommation de l'API Sirene pour récupérer les données sur les sociétés en focntion du Siret
 export async function getCompanyBySiret(siret) {
   const res = await fetch(`https://api.insee.fr/api-sirene/3.11/siret/${siret}`, {
             headers: {
@@ -19,4 +20,4 @@ export async function getCompanyBySiret(siret) {
 }
 
 
-//Requête qui fonctionne en console : curl --location 'https://api.insee.fr/api-sirene/3.11/siret/32929709700035' --header 'X-INSEE-Api-Key-Integration: 265f3f8e-9f3e-4fea-9f3f-8e9f3e0fea59'
+//Requête qui fonctionne en console : curl --location 'https://api.insee.fr/api-sirene/3.11/siret/32929709700035' --header 'X-INSEE-Api-Key-Integration: token'

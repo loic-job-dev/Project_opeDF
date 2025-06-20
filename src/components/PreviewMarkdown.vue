@@ -131,7 +131,6 @@ function exportPdf() {
     <h2>Aperçu Markdown</h2>
     <pre>{{ markdown }}</pre>
 
-    <!-- ExportButtons ne rend rien dans le DOM -->
     <ExportButtons
       ref="exportRef"
       :markdown="markdown"
