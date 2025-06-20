@@ -12,7 +12,9 @@ const markdown = computed(() => {
 
 La présente opération **« ${form.opName || ''} »**, organisée par **${form.societyOrganisation || ''}**, une société de type **${form.judiciaryType || ''}** dont le siège social est situé à **${form.societyAddress || ''}**, est ouverte à toute personne physique majeure résidant en France métropolitaine.
 
-Une seule participation par foyer (même nom, même adresse postale et/ou email) est autorisée pour toute la durée de l’opération, soit du **${form.startDate || ''}** au **${form.endDate || ''}**, sur la zone géographique suivante : **${form.geographicZone || ''}**.
+Une seule participation par foyer (même nom, même adresse postale et/ou email) est autorisée pour toute la durée de l’opération, pour un achat compris entre le **${form.startDate || ''}** et le **${form.endDate || ''}**, sur la zone géographique suivante : **${form.geographicZone || ''}**.
+
+La date limite de participation est fixée à l'échéance suivante : **« ${form.participationEndDate || ''} »**.
 
 La participation doit être personnelle. Il est interdit de participer via plusieurs identités, adresses électroniques ou coordonnées bancaires.
 

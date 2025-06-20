@@ -45,9 +45,14 @@ const form = useFormStore()
       </div>
 
       <div class="form-group date-range">
-        <label>Période de validité :</label>
+        <label>Période d'achat :</label>
         <input type="date" v-model="form.startDate" /> au
         <input type="date" v-model="form.endDate" />
+      </div>
+
+      <div class="form-group date-range">
+        <label for="participationEndDate">Date limite de participation</label>
+        <input id="participationEndDate" v-model="form.participationEndDate" />
       </div>
 
       <div class="form-group">
