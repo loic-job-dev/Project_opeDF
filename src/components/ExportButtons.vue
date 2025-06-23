@@ -1,8 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue'
+//Il n'existe pas de package officiel de types pour ces modules
+// @ts-ignore
 import markdownIt from 'markdown-it'
+// @ts-ignore
 import htmlToPdfmake from 'html-to-pdfmake'
+// @ts-ignore
 import pdfMake from 'pdfmake/build/pdfmake'
+// @ts-ignore
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs
@@ -16,25 +21,21 @@ pdfMake.fonts = {
   }
 }
 
-const props = defineProps({
-  markdown: {
-    type: String,
-    required: true,
-  },
-  filename: {
-    type: String,
-    default: 'document',
-  },
-})
+interface Props {
+  markdown: string
+  filename?: string
+}
 
-const compiledHtml = ref('')
+const props = defineProps<Props>()
+
+const compiledHtml = ref<string>('')
 const md = markdownIt()
 
 watch(() => props.markdown, (newVal) => {
   compiledHtml.value = md.render(newVal || '')
 }, { immediate: true })
 
-function generatePdf() {
+function generatePdf():void {
   if (!compiledHtml.value) {
     console.warn('[ExportButtons] Pas de contenu HTML à convertir')
     return
@@ -51,7 +52,7 @@ function generatePdf() {
     pageMargins: [40, 60, 40, 60], // marges gauche, haut, droite, bas
   }
 
-  pdfMake.createPdf(docDefinition).download(`${props.filename}.pdf`)
+  pdfMake.createPdf(docDefinition).download(`${props.filename || 'document'}.pdf`)
 }
 
 defineExpose({ generatePdf })

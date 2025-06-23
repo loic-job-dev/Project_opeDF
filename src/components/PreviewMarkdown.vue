@@ -1,13 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useFormStore } from '../stores/formStore'
+import { useFormStore } from '@/stores/formStore'
 import ExportButtons from './ExportButtons.vue'
 
 const form = useFormStore()
 
 // Construire toujours une string valide, même si certaines données sont absentes
-const markdown = computed(() => {
+const markdown = computed<string>(() => {
   return `
+# Opération **« ${form.opName || ''} »**
+
 ### **Conditions générales de participation**
 
 La présente opération **« ${form.opName || ''} »**, organisée par **${form.societyOrganisation || ''}**, une société de type **${form.judiciaryType || ''}** dont le siège social est situé à **${form.societyAddress || ''}**, est ouverte à toute personne physique majeure résidant en France métropolitaine.
@@ -112,9 +114,9 @@ En cas de litige, seule la version des modalités affichée sur le site officiel
   `.trim()
 })
 
-const exportRef = ref(null)
+const exportRef = ref<InstanceType<typeof ExportButtons> | null>(null)
 
-function exportPdf() {
+function exportPdf(): void {
   if (!exportRef.value) {
     console.warn('ExportButtons component not ready')
     return
@@ -129,7 +131,6 @@ function exportPdf() {
     <h2>Aperçu Markdown</h2>
     <pre>{{ markdown }}</pre>
 
-    <!-- ExportButtons ne rend rien dans le DOM -->
     <ExportButtons
       ref="exportRef"
       :markdown="markdown"
