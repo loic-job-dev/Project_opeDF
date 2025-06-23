@@ -25,3 +25,6 @@ dist-ssr
 
 # Variables d'environnement
 .env
+
+# TypeScript 
+dist/
