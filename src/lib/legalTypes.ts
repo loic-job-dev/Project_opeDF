@@ -1,4 +1,4 @@
-export const legalCategories = {
+export const legalCategories: Record<string, string> = {
   '1000': 'Personne physique',
   '1100': 'Artisan-commerçant',
   '1200': 'Commerçant',

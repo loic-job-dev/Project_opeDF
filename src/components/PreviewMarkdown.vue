@@ -1,12 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useFormStore } from '../stores/formStore'
+import { useFormStore } from '@/stores/formStore'
 import ExportButtons from './ExportButtons.vue'
 
 const form = useFormStore()
 
 // Construire toujours une string valide, même si certaines données sont absentes
-const markdown = computed(() => {
+const markdown = computed<string>(() => {
   return `
 # Opération **« ${form.opName || ''} »**
 
@@ -114,9 +114,9 @@ En cas de litige, seule la version des modalités affichée sur le site officiel
   `.trim()
 })
 
-const exportRef = ref(null)
+const exportRef = ref<InstanceType<typeof ExportButtons> | null>(null)
 
-function exportPdf() {
+function exportPdf(): void {
   if (!exportRef.value) {
     console.warn('ExportButtons component not ready')
     return

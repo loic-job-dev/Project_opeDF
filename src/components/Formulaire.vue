@@ -1,11 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import { useFormStore } from '@/stores/formStore'
+
 
 const form = useFormStore()
 
-function onSiretInput(event) {
+function onSiretInput(event: Event) {
+  const target = event.target as HTMLInputElement
   // Supprime tous les caractères non numériques, y compris les espaces
-  const cleaned = event.target.value.replace(/\D/g, '')
+  const cleaned = target.value.replace(/\D/g, '')
   form.siretNumber = cleaned
 }
 </script>
