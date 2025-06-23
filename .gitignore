@@ -28,3 +28,7 @@ dist-ssr
 
 # TypeScript 
 dist/
+
+# Fichier mongo pour exemple réponse API Houston
+src/lib/operation.ts
+exemple.txt

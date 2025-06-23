@@ -18,9 +18,7 @@ export interface CompanyData {
 }
 
 export interface OperationData {
-  custom: {
-    pagetitle: string
-  }
+  title: string
   date_debut?: string
   date_fin?: string
   date_fin_achat?: string
