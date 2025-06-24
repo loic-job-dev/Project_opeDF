@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import FormulaireView from '@/views/FormulaireView.vue'
 import PreviewView from '@/views/PreviewView.vue'
 import DataFetcher from '@/components/DataFetcher.vue'
+import TextWithAIView from '@/views/TextWithAIView.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -17,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
      path: '/preview',
      name: 'PreviewMarkdown',
      component: PreviewView
+   },
+      {
+     path: '/withai',
+     name: 'TextWithAIView',
+     component: TextWithAIView
    },
     {
     path: '/dataFetcher',

@@ -6,15 +6,24 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goToPreview() {
-  router.push('/preview')
+    router.push('/preview')
 }
-
+function goTotextWithAI() {
+    router.push('/withai')
+}
 
 </script>
 
 <template>
-    <button @click="goToPreview">→ Aperçu Markdown</button>
+    <div>
+        <button @click="goTotextWithAI">Essai avec IA</button>
+    </div>
+    <div>
+        <button @click="goToPreview">→ Aperçu Markdown</button>
+    </div>
     <Formulaire />
     <Autocomplete />
-    <button @click="goToPreview">→ Aperçu Markdown</button>
+    <div>
+        <button @click="goToPreview">→ Aperçu Markdown</button>
+    </div>
 </template>

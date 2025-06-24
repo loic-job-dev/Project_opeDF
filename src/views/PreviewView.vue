@@ -5,11 +5,19 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function goToForm() {
-  router.push('/formulaire')
+    router.push('/formulaire')
+}
+function goTotextWithAI() {
+    router.push('/withai')
 }
 </script>
 
 <template>
-  <PreviewMarkdown />
-  <button @click="goToForm">← Retour au formulaire</button>
+    <PreviewMarkdown />
+    <div>
+        <button @click="goToForm">← Retour au formulaire</button>
+    </div>
+        <div>
+        <button @click="goTotextWithAI">Essai avec IA</button>
+    </div>
 </template>
