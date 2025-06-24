@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/formStore'
 
-
 const form = useFormStore()
 
 function onSiretInput(event: Event) {
   const target = event.target as HTMLInputElement
-  // Supprime tous les caractères non numériques, y compris les espaces
   const cleaned = target.value.replace(/\D/g, '')
   form.siretNumber = cleaned
 }
@@ -14,9 +12,8 @@ function onSiretInput(event: Event) {
 
 <template>
   <div class="container">
-
     <section class="section">
-      <h2>Informations générales sur l’opération</h2>
+      <h2>Informations sur l’opération</h2>
 
       <div class="form-group">
         <label for="opName">Nom de l’opération :</label>
@@ -24,22 +21,37 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="siretNumber">Numéro Siret (gère l'autocomplétion) :</label>
+        <label for="offerTitle">Titre de l'offre :</label>
+        <input id="offerTitle" v-model="form.offerTitle" />
+      </div>
+
+      <div class="form-group">
+        <label for="offerType">Type d'offre :</label>
+        <input id="offerType" v-model="form.offerType" />
+      </div>
+
+      <div class="form-group">
+        <label for="offerMechanism">Mécanisme de l'offre :</label>
+        <input id="offerMechanism" v-model="form.offerMechanism" />
+      </div>
+
+      <div class="form-group">
+        <label for="siretNumber">Numéro Siret :</label>
         <input id="siretNumber" v-model="form.siretNumber" @input="onSiretInput" inputmode="numeric" />
       </div>
 
       <div class="form-group">
-        <label for="societyOrganisation">Nom de l’entreprise organisatrice :</label>
+        <label for="societyOrganisation">Nom de l'entreprise :</label>
         <input id="societyOrganisation" v-model="form.societyOrganisation" />
       </div>
 
       <div class="form-group">
-        <label for="judiciaryType">Type juridique de l’entreprise :</label>
+        <label for="judiciaryType">Type juridique :</label>
         <input id="judiciaryType" v-model="form.judiciaryType" />
       </div>
 
       <div class="form-group">
-        <label for="societyAddress">Adresse postale du siège social :</label>
+        <label for="societyAddress">Adresse du siège :</label>
         <input id="societyAddress" v-model="form.societyAddress" />
       </div>
 
@@ -49,34 +61,44 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="capital">Capital social :</label>
-        <input id="capital" v-model="form.capital" />
+        <label for="rcsCity">Ville RCS :</label>
+        <input id="rcsCity" v-model="form.rcsCity" />
       </div>
 
       <div class="form-group">
-        <label for="websiteUrl">URL du site de l’opération :</label>
+        <label for="socialCapital">Capital social :</label>
+        <input id="socialCapital" v-model="form.socialCapital" />
+      </div>
+
+      <div class="form-group">
+        <label for="websiteUrl">Site de l’opération :</label>
         <input id="websiteUrl" v-model="form.websiteUrl" />
       </div>
 
-      <div class="form-group date-range">
-        <label>Période d'achat :</label>
-        <input type="date" v-model="form.startDate" /> au
-        <input type="date" v-model="form.endDate" />
+      <div class="form-group">
+        <label for="startDate">Début :</label>
+        <input type="date" id="startDate" v-model="form.startDate" />
       </div>
 
-      <div class="form-group date-range">
-        <label for="participationEndDate">Date limite de participation</label>
+      <div class="form-group">
+        <label for="endDate">Fin :</label>
+        <input type="date" id="endDate" v-model="form.endDate" />
+      </div>
+
+      <div class="form-group">
+        <label for="participationEndDate">Date limite de participation :</label>
         <input id="participationEndDate" v-model="form.participationEndDate" />
       </div>
 
       <div class="form-group">
-        <label for="geographicZone">Zone géographique concernée :</label>
+        <label for="claimDeadline">Date limite de réclamation :</label>
+        <input id="claimDeadline" v-model="form.claimDeadline" />
+      </div>
+
+      <div class="form-group">
+        <label for="geographicZone">Zone géographique :</label>
         <input id="geographicZone" v-model="form.geographicZone" />
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Conditions de participation</h2>
 
       <div class="form-group">
         <label for="targetAudience">Public ciblé :</label>
@@ -84,52 +106,49 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="participationLimit">Nombre maximal de participations :</label>
+        <label for="participationLimit">Limite de participation :</label>
         <input id="participationLimit" v-model="form.participationLimit" />
       </div>
 
       <div class="form-group">
-        <label for="restrictions">Restrictions spécifiques :</label>
-        <textarea id="restrictions" v-model="form.restrictions" rows="5"></textarea>
+        <label for="restrictions">Restrictions :</label>
+        <textarea id="restrictions" v-model="form.restrictions" />
       </div>
 
       <div class="form-group">
-        <label for="concernedProducts">Produits concernés :</label>
-        <input id="concernedProducts" v-model="form.concernedProducts" />
+        <label for="eligibleProducts">Produits concernés :</label>
+        <input id="eligibleProducts" v-model="form.eligibleProducts" />
       </div>
 
       <div class="form-group">
-        <label for="purchaseMode">Mode d’achat :</label>
+        <label for="eligibleStores">Magasins éligibles :</label>
+        <input id="eligibleStores" v-model="form.eligibleStores" />
+      </div>
+
+      <div class="form-group">
+        <label for="purchaseMode">Mode d'achat :</label>
         <input id="purchaseMode" v-model="form.purchaseMode" />
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Justificatifs requis</h2>
 
       <div class="form-group">
-        <label for="proofType">Type de preuve d’achat :</label>
+        <label for="proofType">Type de preuve :</label>
         <input id="proofType" v-model="form.proofType" />
       </div>
 
       <div class="form-group">
-        <label for="numberOfProofs">Nombre de justificatifs demandés :</label>
+        <label for="numberOfProofs">Nombre de justificatifs :</label>
         <input id="numberOfProofs" v-model="form.numberOfProofs" />
       </div>
 
       <div class="form-group">
-        <label for="proofDetails">Informations à entourer :</label>
-        <textarea id="proofDetails" v-model="form.proofDetails" rows="3"></textarea>
+        <label for="proofDetails">Détails des preuves :</label>
+        <textarea id="proofDetails" v-model="form.proofDetails" />
       </div>
 
       <div class="form-group">
-        <label for="submissionMethod">Mode de soumission :</label>
+        <label for="submissionMethod">Soumission :</label>
         <input id="submissionMethod" v-model="form.submissionMethod" />
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Remboursement / récompense</h2>
 
       <div class="form-group">
         <label for="refundType">Type de remboursement :</label>
@@ -137,27 +156,28 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="refundConditions">Conditions de calcul :</label>
-        <textarea id="refundConditions" v-model="form.refundConditions" rows="3"></textarea>
+        <label for="refundConditions">Conditions :</label>
+        <textarea id="refundConditions" v-model="form.refundConditions" />
       </div>
 
       <div class="form-group">
-        <label for="refundDelay">Délai estimé :</label>
+        <label for="refundDelay">Délai :</label>
         <input id="refundDelay" v-model="form.refundDelay" />
       </div>
 
       <div class="form-group">
-        <label for="refundLimits">Limites de remboursement :</label>
-        <textarea id="refundLimits" v-model="form.refundLimits" rows="2"></textarea>
+        <label for="refundLimits">Limites :</label>
+        <textarea id="refundLimits" v-model="form.refundLimits" />
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Contact et service client</h2>
 
       <div class="form-group">
-        <label for="contactAddress">Adresse postale :</label>
+        <label for="contactAddress">Adresse de contact :</label>
         <input id="contactAddress" v-model="form.contactAddress" />
+      </div>
+
+      <div class="form-group">
+        <label for="paperAddress">Adresse courrier :</label>
+        <input id="paperAddress" v-model="form.paperAddress" />
       </div>
 
       <div class="form-group">
@@ -171,37 +191,28 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="contactFormUrl">Formulaire de contact (URL) :</label>
-        <input id="contactFormUrl" v-model="form.contactFormUrl" />
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Données personnelles / RGPD</h2>
-
-      <div class="form-group">
-        <label for="dpoEmail">Email du DPO / RGPD :</label>
-        <input id="dpoEmail" type="email" v-model="form.dpoEmail" />
+        <label for="dpoEmail">Email DPO :</label>
+        <input id="dpoEmail" v-model="form.dpoEmail" />
       </div>
 
       <div class="form-group">
-        <label for="privacyPolicyUrl">URL vers la politique de confidentialité :</label>
+        <label for="privacyPolicyUrl">Politique de confidentialité :</label>
         <input id="privacyPolicyUrl" v-model="form.privacyPolicyUrl" />
       </div>
 
       <div class="form-group">
-        <label for="dataPurpose">Finalité du traitement :</label>
-        <textarea id="dataPurpose" v-model="form.dataPurpose" rows="2"></textarea>
+        <label for="dataPurpose">Finalité des données :</label>
+        <textarea id="dataPurpose" v-model="form.dataPurpose" />
       </div>
 
       <div class="form-group">
-        <label for="dataRetention">Durée de conservation des données :</label>
+        <label for="dataRetention">Durée de conservation :</label>
         <input id="dataRetention" v-model="form.dataRetention" />
       </div>
 
       <div class="form-group">
-        <label for="marketingConsent">Consentement marketing / newsletter :</label>
-        <textarea id="marketingConsent" v-model="form.marketingConsent" rows="2"></textarea>
+        <label for="marketingConsent">Consentement marketing :</label>
+        <textarea id="marketingConsent" v-model="form.marketingConsent" />
       </div>
     </section>
   </div>
