@@ -11,6 +11,11 @@ function onSiretInput(event: Event) {
 </script>
 
 <template>
+  <div>
+    <router-link to="/dataFetcher">test API IA</router-link>
+  </div>
+
+
   <div class="container">
     <section class="section">
       <h2>Informations sur l’opération</h2>
