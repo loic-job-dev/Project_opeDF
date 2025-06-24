@@ -40,7 +40,7 @@ watch(
                     .join(' ')
                     .trim()
                 form.rcsNumber = etab.siren || ''
-                form.capital = '' // Pas dispo dans l’API
+                form.socialCapital = '' // Pas dispo dans l’API
             } catch (error) {
                 console.error('Erreur lors de la récupération du SIRET', error)
             }

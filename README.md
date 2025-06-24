@@ -22,3 +22,5 @@ Les données ajoutées via le formulaire sont stockées en un store Pinia.
 La V1 est réalisée avant démonstration, et avant appel d'API Sirene.
 
 La V2 contient l'appel API Sirene pour autocomplétion du formulaire relatif aux informations de l'entreprise.
+
+La V3 comporte une mise à jour du formulaire pour correspondre d'avantage aux besoins rééels.
