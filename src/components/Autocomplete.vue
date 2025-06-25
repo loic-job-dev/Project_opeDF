@@ -59,6 +59,7 @@ async function loadOperationData(): Promise<void> {
         form.startDate = data.date_debut?.split('T')[0] ?? ''
         form.endDate = data.date_fin?.split('T')[0] ?? ''
         form.participationEndDate = formatToFrenchDate(data.date_fin_achat)
+        form.claimDeadline = formatToFrenchDate(data.date_fin_achat)
     } catch (error) {
         console.error('Erreur lors du chargement des données de l’opération', error)
     }

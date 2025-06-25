@@ -55,7 +55,8 @@ export const useFormStore = defineStore('form', () => {
   const dpoEmail = ref('dpo@blackanddecker.fr')
   const privacyPolicyUrl = ref('https://www.blackanddecker.fr/politique-confidentialite')
   const dataPurpose = ref('Gestion de la participation à l’opération promotionnelle')
-  const dataRetention = ref('3 ans à compter de la fin de l’opération')
+  const personnalDataRetention = ref('3 ans à compter de la fin de l’opération')
+  const bankingDataRetention = ref('10 ans à compter de la fin de l’opération')
   const marketingConsent = ref('Consentement explicite requis pour recevoir des communications marketing')
 
   return {
@@ -107,7 +108,8 @@ export const useFormStore = defineStore('form', () => {
     dpoEmail,
     privacyPolicyUrl,
     dataPurpose,
-    dataRetention,
+    personnalDataRetention,
+    bankingDataRetention,
     marketingConsent
   }
 })

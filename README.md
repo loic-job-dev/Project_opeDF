@@ -24,3 +24,4 @@ La V1 est réalisée avant démonstration, et avant appel d'API Sirene.
 La V2 contient l'appel API Sirene pour autocomplétion du formulaire relatif aux informations de l'entreprise.
 
 La V3 comporte une mise à jour du formulaire pour correspondre d'avantage aux besoins rééels.
+Une page permettant de soliciter l'IA (GPT-4o en test) est rajoutée et donne un texte brut dans la même page.

@@ -122,6 +122,17 @@ pre {
 }
 
 
+/*style des liens router*/
+.router-link-active {
+  color: rgb(189, 25, 148);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.router-link-exact-active {
+  color: darkblue;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
