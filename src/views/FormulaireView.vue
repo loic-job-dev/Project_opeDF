@@ -16,7 +16,7 @@ function goTotextWithAI() {
 
 <template>
     <div>
-        <button @click="goTotextWithAI">Essai avec IA</button>
+        <button @click="goTotextWithAI">Essai avec IA (non fonctionnel, à venir)</button>
     </div>
     <div>
         <button @click="goToPreview">→ Aperçu Markdown</button>

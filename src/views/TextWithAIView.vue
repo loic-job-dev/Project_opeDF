@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import Formulaire from '@/components/Formulaire.vue'
-import Autocomplete from '@/components/Autocomplete.vue'
+import DataFetcher from '@/components/DataFetcher.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -21,5 +20,5 @@ function goToForm() {
   <div>
     <button @click="goToForm">← Retour au formulaire</button>
   </div>
-  <div>Page de test avec IA</div>
+  <DataFetcher/>
 </template>

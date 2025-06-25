@@ -11,11 +11,6 @@ function onSiretInput(event: Event) {
 </script>
 
 <template>
-  <div>
-    <router-link to="/dataFetcher">test API IA</router-link>
-  </div>
-
-
   <div class="container">
     <section class="section">
       <h2>Informations sur l’opération</h2>
@@ -116,6 +111,12 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
+        <label for="participationLimitDetails">Détails des limites de participation :</label>
+        <input id="participationLimitDetails" v-model="form.participationLimitDetails" />
+      </div>
+      
+
+      <div class="form-group">
         <label for="restrictions">Restrictions :</label>
         <textarea id="restrictions" v-model="form.restrictions" />
       </div>
@@ -211,8 +212,13 @@ function onSiretInput(event: Event) {
       </div>
 
       <div class="form-group">
-        <label for="dataRetention">Durée de conservation :</label>
-        <input id="dataRetention" v-model="form.dataRetention" />
+        <label for="dataRetention">Durée de conservation des données personnelles :</label>
+        <input id="dataRetention" v-model="form.personnalDataRetention" />
+      </div>
+
+      <div class="form-group">
+        <label for="dataRetention">Durée de conservation des données bancaires + nom + prénom :</label>
+        <input id="dataRetention" v-model="form.bankingDataRetention" />
       </div>
 
       <div class="form-group">

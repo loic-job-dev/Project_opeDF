@@ -18,6 +18,6 @@ function goTotextWithAI() {
         <button @click="goToForm">← Retour au formulaire</button>
     </div>
         <div>
-        <button @click="goTotextWithAI">Essai avec IA</button>
+        <button @click="goTotextWithAI">Essai avec IA (non fonctionnel, à venir)</button>
     </div>
 </template>

@@ -91,7 +91,7 @@ La politique de confidentialité est disponible ici : **${form.privacyPolicyUrl 
 
 La finalité du traitement est la suivante : **${form.dataPurpose || ''}**.
 
-Les données seront conservées pendant une durée de **${form.dataRetention || ''}**.
+Les données personnelles seront conservées pendant une durée de **${form.personnalDataRetention || ''}**, et les données bancaires (ainsi que nom et prénom) pendant une durée de **${form.bankingDataRetention || ''}**.
 
 Le consentement explicite du participant est demandé pour l’envoi éventuel de communications marketing, conformément à la réglementation en vigueur : **${form.marketingConsent || ''}**.
 

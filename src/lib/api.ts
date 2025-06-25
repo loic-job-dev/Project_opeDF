@@ -41,6 +41,8 @@ export async function getCompanyBySiret(siret: string): Promise<CompanyData> {
   const etablissement = fullData.etablissement as CompanyData
   return etablissement
 }
+//Requête qui fonctionne en console : curl --location 'https://api.insee.fr/api-sirene/3.11/siret/32929709700035' --header 'X-INSEE-Api-Key-Integration: token'
+
 
 //Consommation de l'API venant de Houston 
 export async function getOperationElements(): Promise<OperationData> {
@@ -56,4 +58,22 @@ export async function getOperationElements(): Promise<OperationData> {
 }
 
 
-//Requête qui fonctionne en console : curl --location 'https://api.insee.fr/api-sirene/3.11/siret/32929709700035' --header 'X-INSEE-Api-Key-Integration: token'
+//Consommation de l'API OpenAI via une function netlify
+export async function getCompletion(prompt: string) {
+  const res = await fetch("/.netlify/functions/getData", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ prompt }),
+  });
+
+  if (!res.ok) {
+  const err = await res.json();
+  throw new Error(err.details || 'Erreur inconnue');
+}
+
+  const data = await res.json();
+  console.log(data)
+  return data.text; // contient la réponse générée
+}

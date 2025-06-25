@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue'
+import { getCompletion } from '@/lib/api'
+import { useAIStore } from '@/stores/aiStore'
 
-const data = ref<any>(null);
-const error = ref<string | null>(null);
+const aiDatas = useAIStore()
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/.netlify/functions/getData');
-    if (!response.ok) throw new Error('Erreur serveur');
-    data.value = await response.json();
-  } catch (err) {
-    error.value = (err as Error).message;
-  }
-});
+const response = ref('Chargement...')
+
+async function askAI() {
+  response.value = await getCompletion(aiDatas.prompt)
+}
 </script>
 
 <template>
   <div>
-    <h2>Données reçues :</h2>
-    <pre>{{ data }}</pre>
-    <p v-if="error">{{ error }}</p>
+    <label for="prompt">Votre demande :</label>
+    <textarea
+      id="prompt"
+      v-model="aiDatas.prompt"
+      rows="4"
+      cols="50"
+      placeholder="Entrez votre question ici"
+    ></textarea>
   </div>
+  <button @click="askAI">Interroger Chat-GPT</button>
+  <p>{{ response }}</p>
 </template>
