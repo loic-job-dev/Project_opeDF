@@ -1,7 +1,3 @@
-//Ce fichier sert à consommer l'API d'OpenAI via SDK à travers une fonction netlify
-//Ainsi la clé API reste dans le back et n'apparait pas dans le front
-//Fichier en .js volontairement : les .ts peuvent créer des soucis dans le cadre des fonctions netlify
-
 import { config } from "dotenv";
 import { createOpenAI } from '@ai-sdk/openai';
 import { generateText } from 'ai';
@@ -13,17 +9,17 @@ const openai = createOpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export default async function handler(req) {
+exports.handler = async function(event, context) {
   try {
-    // Vérifie que la méthode est bien POST
-    if (req.method && req.method !== 'POST') {
-      return new Response(JSON.stringify({ error: 'Méthode non autorisée' }), {
-        status: 405,
+    if (event.httpMethod !== 'POST') {
+      return {
+        statusCode: 405,
         headers: { 'Content-Type': 'application/json' },
-      });
+        body: JSON.stringify({ error: 'Méthode non autorisée' }),
+      };
     }
 
-    const { prompt } = await req.json();
+    const { prompt } = JSON.parse(event.body || '{}');
 
     console.log("🟡 Reçu prompt :", prompt);
 
@@ -35,24 +31,24 @@ export default async function handler(req) {
       prompt,
     });
 
-    //mettre en mode streaming pour mettre les règles indispensables en modèle
-    //Voir pour modifier le temps de réponse
-
     console.log("🟢 Réponse générée :", text);
 
-    return new Response(JSON.stringify({ text }), {
+    return {
+      statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-    });
+      body: JSON.stringify({ text }),
+    };
 
   } catch (err) {
     console.error("🔴 Erreur dans getData.js :", err);
 
-    return new Response(JSON.stringify({
-      error: 'Erreur serveur',
-      details: err.message || String(err),
-    }), {
-      status: 500,
+    return {
+      statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
-    });
+      body: JSON.stringify({
+        error: 'Erreur serveur',
+        details: err.message || String(err),
+      }),
+    };
   }
-}
+};
