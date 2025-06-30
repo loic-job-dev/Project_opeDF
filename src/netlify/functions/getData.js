@@ -35,6 +35,9 @@ export default async function handler(req) {
       prompt,
     });
 
+    //mettre en mode streaming pour mettre les règles indispensables en modèle
+    //Voir pour modifier le temps de réponse
+
     console.log("🟢 Réponse générée :", text);
 
     return new Response(JSON.stringify({ text }), {

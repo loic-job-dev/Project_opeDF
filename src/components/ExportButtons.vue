@@ -55,7 +55,38 @@ function generatePdf():void {
   pdfMake.createPdf(docDefinition).download(`${props.filename || 'document'}.pdf`)
 }
 
+
+//Commande d'installation :
+//npm install html-docx-js
+
+
+// function generateDocx(): void {
+//   if (!compiledHtml.value) {
+//     console.warn('[ExportButtons] Pas de contenu HTML à convertir')
+//     return
+//   }
+
+//   const html = `
+//     <html>
+//       <head><meta charset="utf-8"></head>
+//       <body>${compiledHtml.value}</body>
+//     </html>
+//   `
+
+//   const blob = htmlDocx.asBlob(html)
+
+//   const link = document.createElement('a')
+//   link.href = URL.createObjectURL(blob)
+//   link.download = `${props.filename || 'document'}.docx`
+//   link.click()
+
+//   // Libérer l'URL après utilisation
+//   URL.revokeObjectURL(link.href)
+// }
+
+
 defineExpose({ generatePdf })
+//defineExpose({ generatePdf, generateDocx })
 </script>
 
 <template>
