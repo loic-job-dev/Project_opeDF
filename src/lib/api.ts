@@ -74,6 +74,5 @@ export async function getCompletion(prompt: string) {
 }
 
   const data = await res.json();
-  console.log(data)
   return data.text; // contient la réponse générée
 }

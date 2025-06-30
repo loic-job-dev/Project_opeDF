@@ -5,10 +5,8 @@ import { useAIStore } from '@/stores/aiStore'
 
 const aiDatas = useAIStore()
 
-const response = ref('Chargement...')
-
 async function askAI() {
-  response.value = await getCompletion(aiDatas.prompt)
+  aiDatas.response = await getCompletion(aiDatas.prompt)
 }
 </script>
 
@@ -24,5 +22,5 @@ async function askAI() {
     ></textarea>
   </div>
   <button @click="askAI">Interroger Chat-GPT</button>
-  <p>{{ response }}</p>
+  <p>{{ aiDatas.response }}</p>
 </template>
