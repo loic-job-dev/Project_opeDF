@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { watch, onMounted } from 'vue'
+import { watch } from 'vue'
 import { useFormStore } from '@/stores/formStore'
-import { getCompanyBySiret, getOperationElements, CompanyData, OperationData } from '@/lib/api'
+import { getCompanyBySiret, CompanyData } from '@/lib/api'
 import { legalCategories } from '@/lib/legalTypes'
 
 const form = useFormStore()
@@ -50,24 +50,26 @@ watch(
 )
 
 //Essai d'autocomplétion à partir de l'API Houston
-async function loadOperationData(): Promise<void> {
-    try {
-        const data: OperationData = await getOperationElements()
+//Utilisé avec un exemple précis
+//Logique en place si intéressant à l'avenir
+// async function loadOperationData(): Promise<void> {
+//     try {
+//         const data: OperationData = await getOperationElements()
 
-        form.opName = data.title
+//         form.opName = data.title
 
-        form.startDate = data.date_debut?.split('T')[0] ?? ''
-        form.endDate = data.date_fin?.split('T')[0] ?? ''
-        form.participationEndDate = formatToFrenchDate(data.date_fin_achat)
-        form.claimDeadline = formatToFrenchDate(data.date_fin_achat)
-    } catch (error) {
-        console.error('Erreur lors du chargement des données de l’opération', error)
-    }
-}
+//         form.startDate = data.date_debut?.split('T')[0] ?? ''
+//         form.endDate = data.date_fin?.split('T')[0] ?? ''
+//         form.participationEndDate = formatToFrenchDate(data.date_fin_achat)
+//         form.claimDeadline = formatToFrenchDate(data.date_fin_achat)
+//     } catch (error) {
+//         console.error('Erreur lors du chargement des données de l’opération', error)
+//     }
+// }
 
-onMounted(() => {
-    loadOperationData()
-})
+// onMounted(() => {
+//     loadOperationData()
+// })
 </script>
 
 
