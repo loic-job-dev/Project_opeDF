@@ -9,6 +9,11 @@ import htmlToPdfmake from 'html-to-pdfmake'
 import pdfMake from 'pdfmake/build/pdfmake'
 // @ts-ignore
 import pdfFonts from 'pdfmake/build/vfs_fonts'
+import { Document, Packer, Paragraph, HeadingLevel, TextRun } from 'docx'
+import { saveAs } from 'file-saver'
+import TurndownService from 'turndown'
+
+
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs
 // Définit Roboto comme police par défaut, une modification peut créer des erreurs selon la police
@@ -35,6 +40,7 @@ watch(() => props.markdown, (newVal) => {
   compiledHtml.value = md.render(newVal || '')
 }, { immediate: true })
 
+
 function generatePdf():void {
   if (!compiledHtml.value) {
     console.warn('[ExportButtons] Pas de contenu HTML à convertir')
@@ -56,37 +62,69 @@ function generatePdf():void {
 }
 
 
-//Commande d'installation :
-//npm install html-docx-js
+//Génération de .docx
+const turndownService = new TurndownService()
 
 
-// function generateDocx(): void {
-//   if (!compiledHtml.value) {
-//     console.warn('[ExportButtons] Pas de contenu HTML à convertir')
-//     return
-//   }
+function generateDocx() {
+  if (!compiledHtml.value) {
+    console.warn('[ExportButtons] Pas de contenu HTML à convertir')
+    return
+  }
 
-//   const html = `
-//     <html>
-//       <head><meta charset="utf-8"></head>
-//       <body>${compiledHtml.value}</body>
-//     </html>
-//   `
+  // Convertit le HTML compilé en markdown brut
+  const markdownText = turndownService.turndown(compiledHtml.value)
 
-//   const blob = htmlDocx.asBlob(html)
+  // Transforme chaque ligne du markdown en bloc docx
+  const lines = markdownText.split('\n')
+  const docParagraphs: Paragraph[] = []
 
-//   const link = document.createElement('a')
-//   link.href = URL.createObjectURL(blob)
-//   link.download = `${props.filename || 'document'}.docx`
-//   link.click()
+  for (const line of lines) {
+    if (line.startsWith('# ')) {
+      docParagraphs.push(
+        new Paragraph({
+          text: line.replace('# ', ''),
+          heading: HeadingLevel.HEADING_1,
+        })
+      )
+    } else if (line.startsWith('## ')) {
+      docParagraphs.push(
+        new Paragraph({
+          text: line.replace('## ', ''),
+          heading: HeadingLevel.HEADING_2,
+        })
+      )
+    } else if (line.startsWith('- ')) {
+      docParagraphs.push(
+        new Paragraph({
+          text: line.replace('- ', '• '),
+        })
+      )
+    } else {
+      docParagraphs.push(
+        new Paragraph({
+          children: [new TextRun(line)],
+        })
+      )
+    }
+  }
 
-//   // Libérer l'URL après utilisation
-//   URL.revokeObjectURL(link.href)
-// }
+  const doc = new Document({
+    sections: [
+      {
+        children: docParagraphs,
+      },
+    ],
+  })
+
+  Packer.toBlob(doc).then((blob) => {
+    saveAs(blob, `${props.filename || 'document'}.docx`)
+  })
+}
 
 
-defineExpose({ generatePdf })
-//defineExpose({ generatePdf, generateDocx })
+//defineExpose({ generatePdf })
+defineExpose({ generatePdf, generateDocx })
 </script>
 
 <template>

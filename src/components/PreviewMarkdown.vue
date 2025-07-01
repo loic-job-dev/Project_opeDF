@@ -113,13 +113,13 @@ function exportPdf(): void {
   exportRef.value.generatePdf()
 }
 
-// function exportDocx(): void {
-//   if (!exportRef.value) {
-//     console.warn('ExportButtons component not ready')
-//     return
-//   }
-//   exportRef.value.generateDocx()
-// }
+function exportDocx(): void {
+   if (!exportRef.value) {
+     console.warn('ExportButtons component not ready')
+     return
+   }
+   exportRef.value.generateDocx()
+ }
 </script>
 
 <template>
@@ -134,6 +134,6 @@ function exportPdf(): void {
     />
 
     <button @click="exportPdf">📄 Générer le PDF</button>
-    <!-- <button @click="exportDocx">📝 Générer le DOCX</button> -->
+    <button @click="exportDocx">📝 Générer le DOCX</button>
   </section>
 </template>

@@ -45,34 +45,37 @@ export async function getCompanyBySiret(siret: string): Promise<CompanyData> {
 
 
 //Consommation de l'API venant de Houston 
-export async function getOperationElements(): Promise<OperationData> {
-  const res = await fetch('https://api-gabarit.promo.dev/api/v2/formdata/680a536657000c7ade07bc64')
+//Exemple avec une API déterminée
 
-  if (!res.ok) {
-    console.error('Erreur API Gabarit :', res.status)
-    throw new Error(`Erreur API Gabarit - ${res.status}`)
-  }
+//Si intéressant, rajouter un input pour demander l'id unique et consommer l'API avec la logique ci-dessous
+// export async function getOperationElements(): Promise<OperationData> {
+//   const res = await fetch('https://api-gabarit.promo.dev/api/v2/formdata/680a536657000c7ade07bc64')
 
-  const data: OperationData = await res.json()
-  return data
-}
+//   if (!res.ok) {
+//     console.error('Erreur API Gabarit :', res.status)
+//     throw new Error(`Erreur API Gabarit - ${res.status}`)
+//   }
+
+//   const data: OperationData = await res.json()
+//   return data
+// }
 
 
 //Consommation de l'API OpenAI via une function netlify
-export async function getCompletion(prompt: string) {
+export async function getCompletion(messages: { role: string; content: string }[]) {
   const res = await fetch("/.netlify/functions/getData", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ prompt }),
+    body: JSON.stringify({ messages }),
   });
 
   if (!res.ok) {
-  const err = await res.json();
-  throw new Error(err.details || 'Erreur inconnue');
-}
+    const err = await res.json();
+    throw new Error(err.details || 'Erreur inconnue');
+  }
 
   const data = await res.json();
-  return data.text; // contient la réponse générée
+  return data.text;
 }
