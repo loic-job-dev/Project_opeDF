@@ -11,6 +11,9 @@ Dans un premier temps, le retour peut être fait en markdown.
 
 A utiliser : GitHib Pages, Vue3 et Vite, pinia, html2pdf.js, markdown-it, html-to-pdfmake, pdfmake
 
+Pour lancer le serveur en local : 
+`netlify dev`
+
 La solution est pensée pour être facilement modifiée en fonction des besoins du contenu du PDF (si jamais ces derniers évoluent dans le temps).
 Projet réalisé initialement avec vue.js + Vite, en JavaScript vanilla.
 Switch vers TypeScript dans la V2.
