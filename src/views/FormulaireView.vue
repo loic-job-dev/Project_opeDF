@@ -15,15 +15,15 @@ function goTotextWithAI() {
 </script>
 
 <template>
-    <div>
+    <div class = "m-3">
         <button @click="goTotextWithAI">Essai avec IA</button>
     </div>
-    <div>
-        <button @click="goToPreview">→ Aperçu Markdown</button>
+    <div class = "m-3">
+        <button @click="goToPreview">→ Aperçu avant édition</button>
     </div>
     <Formulaire />
     <Autocomplete />
-    <div>
-        <button @click="goToPreview">→ Aperçu Markdown</button>
+    <div class = "m-3">
+        <button @click="goToPreview">→ Aperçu avant édition</button>
     </div>
 </template>

@@ -15,9 +15,9 @@ function goTotextWithAI() {
 <template>
     <PreviewMarkdown />
     <div>
-        <button @click="goToForm">← Retour au formulaire</button>
+        <button class = "m-3" @click="goToForm">← Retour au formulaire</button>
     </div>
         <div>
-        <button @click="goTotextWithAI">Essai avec IA (non fonctionnel, à venir)</button>
+        <button class = "m-3" @click="goTotextWithAI">Essai avec IA</button>
     </div>
 </template>

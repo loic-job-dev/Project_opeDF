@@ -123,9 +123,9 @@ function exportDocx(): void {
 </script>
 
 <template>
-  <section class="preview-markdown" ref="markdownRef">
+  <section class="tchat-bloc p-4 rounded-4" ref="markdownRef">
     <h2>Aperçu Markdown</h2>
-    <pre>{{ markdown }}</pre>
+    <pre class="preview-markdown" >{{ markdown }}</pre>
 
     <ExportButtons
       ref="exportRef"
@@ -133,7 +133,15 @@ function exportDocx(): void {
       :filename="form.opName || 'document'"
     />
 
-    <button @click="exportPdf">📄 Générer le PDF</button>
-    <button @click="exportDocx">📝 Générer le DOCX</button>
   </section>
+  <div class="container">
+    <div class="row">
+            <div class="col-6 d-flex justify-content-center">
+        <button @click="exportPdf">📄 Générer en PDF</button>
+      </div>
+      <div class="col-6 d-flex justify-content-center">
+        <button @click="exportDocx">📝 Générer en .docx</button>
+      </div>
+    </div>
+  </div>
 </template>

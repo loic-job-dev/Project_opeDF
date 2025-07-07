@@ -1,13 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import FormulaireView from '@/views/FormulaireView.vue'
 import PreviewView from '@/views/PreviewView.vue'
-import DataFetcher from '@/components/DataFetcher.vue'
 import TextWithAIView from '@/views/TextWithAIView.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {
      path: '/',
-     component: FormulaireView
+     component: TextWithAIView
    },
    {
      path: '/formulaire',
@@ -24,11 +23,6 @@ const routes: Array<RouteRecordRaw> = [
      name: 'TextWithAIView',
      component: TextWithAIView
    },
-    {
-    path: '/dataFetcher',
-    name: 'DataFetcher',
-    component: DataFetcher
-  }
 ]
 
 const router = createRouter({
@@ -37,21 +31,3 @@ const router = createRouter({
 })
 
 export default router
-
-
-// 🧭 6. Utilisation des routes dans les composants
-
-// 🔗 Navigation
-// 
-// <template>
-//   <div>
-//     <router-link to="/">Accueil</router-link>
-//     <router-link to="/about">À propos</router-link>
-//   </div>
-// </template>
-
-// 🧱 Affichage de la vue
-//
-// <template>
-//   <router-view />
-// </template>
