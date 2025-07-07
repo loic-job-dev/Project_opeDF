@@ -13,7 +13,7 @@ const showPreview = ref<boolean>(false)
 
 <template>
   <div class="container">
-    <h1>OpéDF – Générateur de PDF pour les opérations</h1>
+    <h1>Modalia - Générateur de modalités en PDF et .docx</h1>
     <router-view />
   </div>
 </template>

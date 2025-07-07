@@ -28,3 +28,7 @@ La V2 contient l'appel API Sirene pour autocomplétion du formulaire relatif aux
 
 La V3 comporte une mise à jour du formulaire pour correspondre d'avantage aux besoins rééels.
 Une page permettant de soliciter l'IA (GPT-4o en test) est rajoutée et donne un texte brut dans la même page.
+
+La V4 comporte une refonte graphique complète avec Bootstrap, et voit le projet se renommer Modalia.
+La page d'accueil est redéfinie sur le générateur avec IA, mais la feature avec formulaire est conservée et accessible.
+L'IA demande les informations importantes qui seraient manquantes en fin de document généré.

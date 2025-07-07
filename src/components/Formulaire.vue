@@ -10,8 +10,9 @@ function onSiretInput(event: Event) {
 }
 </script>
 
+
 <template>
-  <div class="container">
+  <div class="container tchat-bloc">
     <section class="section">
       <h2>Informations sur l’opération</h2>
 

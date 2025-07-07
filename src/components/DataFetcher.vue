@@ -58,45 +58,45 @@ async function askAI() {
 }
 </script>
 
+
 <template>
-  <div>
-    <!-- Affichage des messages -->
-    <div class="chat-box">
-      <div
-        v-for="(msg, index) in aiDatas.messages"
-        :key="index"
-        :class="msg.role"
-      >
-        <strong v-if="msg.showRoleLabel">
-          {{ msg.role === 'user' ? '👤 Vous' : '🤖 Assistant' }}
-        </strong>
-        <p v-if="msg.role === 'user'">{{ msg.content }}</p>
-        <pre v-else>{{ msg.content }}</pre>
+  <!-- Affichage des messages s'il existent -->
+  <div class="container tchat-bloc mt-4 rounded-4" v-if="aiDatas.messages.some(msg => msg.content && msg.content.trim() !== '')">
+    <div class="row">
+      <template v-for="(msg, index) in aiDatas.messages" :key="index">
+        <div v-if="msg.content && msg.content.trim() !== ''">
+          <h5 v-if="msg.showRoleLabel">
+            {{ msg.role === 'user' ? '👤 Vous' : '🤖 Assistant' }}
+          </h5>
+          <p v-if="msg.role === 'user'" class="p-2">{{ msg.content }}</p>
+          <pre v-if="msg.role === 'assistant'" class="preview-markdown p-2 rounded">
+          {{ msg.content }}
+        </pre>
+        </div>
+      </template>
+    </div>
+  </div>
+  <!-- Zone de saisie -->
+  <div class="container mt-2">
+    <div class="row">
+      <label class="col-2" for="prompt">Votre demande :</label>
+      <textarea class="col-10" id="prompt" v-model="aiDatas.prompt" rows="4" cols="50"
+        placeholder="Veuillez entrer les informations dont vous disposez"></textarea>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <button class="col-10 m-3" @click="askAI" :disabled="isLoading">
+        {{ isLoading ? 'Chargement...' : 'Obtenir des modalités avec l\'IA' }}
+      </button>
+    </div>
+    <!-- Composant Export -->
+    <div class="row">
+      <ExportButtons ref="exportRef" :markdown="markdown" filename="modalites-operation" />
+      <div class="col-6 d-flex justify-content-center">
+        <button class="m-3" @click="exportPdf">📄 Générer en PDF</button>
+      </div>
+      <div class="col-6 d-flex justify-content-center">
+        <button class="m-3" @click="exportDocx">📝 Générer en .docx</button>
       </div>
     </div>
-
-    <!-- Zone de saisie -->
-    <label for="prompt">Votre demande :</label>
-    <textarea
-      id="prompt"
-      v-model="aiDatas.prompt"
-      rows="4"
-      cols="50"
-      placeholder="Veuillez entrer les informations dont vous disposez"
-    ></textarea>
-
-    <button @click="askAI" :disabled="isLoading">
-      {{ isLoading ? 'Chargement...' : 'Générer les modalités avec l\'IA' }}
-    </button>
-
-    <!-- Composant Export -->
-    <ExportButtons
-      ref="exportRef"
-      :markdown="markdown"
-      filename="modalites-operation"
-    />
-
-    <button @click="exportPdf">📄 Générer le PDF</button>
-    <button @click="exportDocx">📝 Générer le DOCX</button>
   </div>
 </template>
