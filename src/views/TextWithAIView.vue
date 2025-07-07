@@ -15,10 +15,7 @@ function goToForm() {
 
 <template>
   <div>
-    <button @click="goToPreview">→ Aperçu Markdown</button>
-  </div>
-  <div>
-    <button @click="goToForm">← Retour au formulaire</button>
+    <button @click="goToForm">Version formulaire</button>
   </div>
   <DataFetcher/>
 </template>
