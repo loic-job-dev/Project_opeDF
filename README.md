@@ -32,3 +32,12 @@ Une page permettant de soliciter l'IA (GPT-4o en test) est rajoutée et donne un
 La V4 comporte une refonte graphique complète avec Bootstrap, et voit le projet se renommer Modalia.
 La page d'accueil est redéfinie sur le générateur avec IA, mais la feature avec formulaire est conservée et accessible.
 L'IA demande les informations importantes qui seraient manquantes en fin de document généré.
+
+
+Pistes d'amélioration :
+Pour un rendu visuel "stream" dans le champ de réponse de l'IA :
+-> Streamer avec streamText() ➜ utiliser Vercel.
+Cette solution n'est pas possible avec netlify (Ne prend pas en charge les ReadableStream dans la réponse HTTP.)
+
+Pour passer par une background fonction de Netlify, autre problème :
+En prod, il n'est pas possible de stocker temporairement les données reçues dans un fichier local, il faut passer par un service externe (Upstash Redis ?)
